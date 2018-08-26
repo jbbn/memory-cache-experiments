@@ -18,8 +18,9 @@ const CacheFactory = function () {
  * Class strategy
  */
 // class CacheFactory extends Map {
-//   getStore () { return this }
+//   getStore () { return new Map(this) }
 //   get length () { return this.size }
+//   set length (len) {}
 // }
 
 CacheFactory.prototype.Cache = function () { return new CacheFactory.prototype.constructor }
