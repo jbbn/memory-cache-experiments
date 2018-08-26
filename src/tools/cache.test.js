@@ -26,15 +26,6 @@ test('It should be possible to write a new record', () => {
   expect(cache.length).toBe(expectedStoreInitialSize)
 })
 
-test('It should not be possible to repeat a key', () => {
-  const expectedStoreInitialSize = cache.length + 1
-  const key = 'repeat-key'
-  const value = 'repeat-value'
-  cache.set(key, value)
-  cache.set(key, value)
-  expect(cache.length).toBe(expectedStoreInitialSize)
-})
-
 test('A get function should exists', () => {
   expect(typeof cache.get).toBe('function')
 })
