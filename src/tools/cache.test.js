@@ -75,3 +75,8 @@ test('[Security] It should NOT be possible to direct edit the store', () => {
   store.set(key, value)
   expect(otherCache.length).toBe(0)
 })
+
+test('The main cache should be intermodule available', () => {
+  const { key, value } = require('./__mocks__/cacheIntermodule')
+  expect(cache.get(key)).toBe(value)
+})
