@@ -10,8 +10,6 @@ const CacheFactory = function () {
   Object.defineProperty(this, 'length', { get: () => store.size })
 }
 
-CacheFactory.prototype.Cache = function () { return new CacheFactory }
-
 /**
  * Class strategy
  */
@@ -20,7 +18,7 @@ CacheFactory.prototype.Cache = function () { return new CacheFactory }
 //   get length () { return this.size }
 // }
 
-// CacheFactory.prototype.Cache = function () { return new CacheFactory }
+CacheFactory.prototype.Cache = function () { return CacheFactory.prototype.constructor }
 
 const store = new CacheFactory()
 
