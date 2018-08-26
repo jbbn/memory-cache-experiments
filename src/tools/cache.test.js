@@ -1,4 +1,5 @@
 const cache = require('./cache')
+const separatedcache = new cache.Cache()
 
 test('The cache tool must exists', () => {
   const store = cache.getStore()
@@ -55,6 +56,9 @@ test('A repeated key should overwrite the previous value', () => {
 })
 
 test('It should be possible to create a separated cache', () => {
-  const separatedcache = new cache.Cache()
+  expect(typeof separatedcache.getStore).toBe('function')
+})
+
+test('A separated cache should be empty', () => {
   expect(separatedcache.length).toBe(0)
 })

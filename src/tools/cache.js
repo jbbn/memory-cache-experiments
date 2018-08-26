@@ -18,7 +18,7 @@ const CacheFactory = function () {
 //   get length () { return this.size }
 // }
 
-CacheFactory.prototype.Cache = function () { return CacheFactory.prototype.constructor }
+CacheFactory.prototype.Cache = function () { return new CacheFactory.prototype.constructor }
 
 const store = new CacheFactory()
 
