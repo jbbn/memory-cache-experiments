@@ -4,10 +4,14 @@
 const CacheFactory = function () {
   const store = new Map()
 
-  this.getStore = () => store
+  this.getStore = () => new Map(store)
   this.set = store.set.bind(store)
   this.get = store.get.bind(store)
-  Object.defineProperty(this, 'length', { get: () => store.size })
+
+  Object.defineProperty(this, 'length', {
+    get: () => store.size,
+    set: function (len) {}
+  })
 }
 
 /**

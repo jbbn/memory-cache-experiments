@@ -6,7 +6,7 @@ test('The cache tool must exists', () => {
   expect(typeof store).toBeTruthy()
 })
 
-test('The store should be private', () => {
+test('[Security] The store should be private', () => {
   expect(typeof cache.store).toBe('undefined')
 })
 
@@ -61,4 +61,26 @@ test('It should be possible to create a separated cache', () => {
 
 test('A separated cache should be empty', () => {
   expect(separatedcache.length).toBe(0)
+})
+
+test('[Security] It should NOT be possible to direct empty the store', () => {
+  const otherCache = new cache.Cache()
+  const store = otherCache.getStore()
+  const key = 'key'
+  const otherKey = 'other-key'
+  const value = 'value'
+  otherCache.set(key, value)
+  otherCache.set(otherKey, value)
+  otherCache.length = 0
+  store.size = 0
+  expect(otherCache.length).toBe(2)
+})
+
+test('[Security] It should NOT be possible to direct edit the store', () => {
+  const otherCache = new cache.Cache()
+  const store = otherCache.getStore()
+  const key = 'key'
+  const value = 'value'
+  store.set(key, value)
+  expect(otherCache.length).toBe(0)
 })
