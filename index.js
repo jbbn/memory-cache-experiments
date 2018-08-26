@@ -1,1 +1,4 @@
-require('src/app.js')
+const { init } = require('./src/app.js')
+
+init()
+  .then(console.log)
