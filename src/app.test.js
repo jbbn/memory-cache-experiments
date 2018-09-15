@@ -8,7 +8,7 @@ const appInitWaiting = timeoutInMiliseconds => () =>
     expect(result).toBe(app.GREETING)
   )
 
-it('The app should be initializable', () => {
+it('It should be possible to initiate the app', () => {
   expect(typeof app.init).toBe('function')
 })
 
@@ -19,7 +19,7 @@ it('It should be presented "I did it" after 250 miliseconds', () => {
   return appInitWaitingRegular()
 })
 
-it('With cache it should be presented "I did it" after less than 100 miliseconds', () => {
+it('It should be presented "I did it" after less than 100 miliseconds when using cache', () => {
   const appInitWaitingWithCache = appInitWaiting(99)
   expect.assertions(1)
 

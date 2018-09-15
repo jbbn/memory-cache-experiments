@@ -1,20 +1,20 @@
 const cache = require('./cache')
 const separatedcache = new cache.Cache()
 
-test('The cache tool must exists', () => {
+test('It should exists the cache tool', () => {
   const store = cache.getStore()
   expect(typeof store).toBeTruthy()
 })
 
-test('[Security] The store should be private', () => {
+test('It should NOT be possible to access the "store" directly (Security)', () => {
   expect(typeof cache.store).toBe('undefined')
 })
 
-test('A set function should exists', () => {
+test('It should exists a "set" function', () => {
   expect(typeof cache.set).toBe('function')
 })
 
-test('It should be possible to get the lenght of the cache store', () => {
+test('It should be possible to get the lenght of the cache "store"', () => {
   expect(cache.length).toBe(0)
 })
 
@@ -26,7 +26,7 @@ test('It should be possible to write a new record', () => {
   expect(cache.length).toBe(expectedStoreInitialSize)
 })
 
-test('A get function should exists', () => {
+test('It should exists a "get" function', () => {
   expect(typeof cache.get).toBe('function')
 })
 
@@ -37,7 +37,7 @@ test('It should be possible to retrieve a record', () => {
   expect(cache.get(key)).toBe(value)
 })
 
-test('A repeated key should overwrite the previous value', () => {
+test('It should overwrite the previous value when set a repeated key', () => {
   const key = 'key'
   const value = 'value'
   const overwriteValue = 'overwrite-value'
@@ -50,11 +50,11 @@ test('It should be possible to create a separated cache', () => {
   expect(typeof separatedcache.getStore).toBe('function')
 })
 
-test('A separated cache should be empty', () => {
+test('It should be empty a new separated cache', () => {
   expect(separatedcache.length).toBe(0)
 })
 
-test('[Security] It should NOT be possible to direct empty the store', () => {
+test('It should NOT be possible to empty the "store" directly (Security)', () => {
   const otherCache = new cache.Cache()
   const store = otherCache.getStore()
   const key = 'key'
@@ -67,7 +67,7 @@ test('[Security] It should NOT be possible to direct empty the store', () => {
   expect(otherCache.length).toBe(2)
 })
 
-test('[Security] It should NOT be possible to direct edit the store', () => {
+test('It should NOT be possible to edit the "store" directly (Security)', () => {
   const otherCache = new cache.Cache()
   const store = otherCache.getStore()
   const key = 'key'
@@ -76,7 +76,7 @@ test('[Security] It should NOT be possible to direct edit the store', () => {
   expect(otherCache.length).toBe(0)
 })
 
-test('The main cache should be intermodule available', () => {
+test('It should be possible to use the main cache anywhere', () => {
   const { key, value } = require('./__mocks__/cacheIntermodule')
   expect(cache.get(key)).toBe(value)
 })
