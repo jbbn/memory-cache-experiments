@@ -1,0 +1,15 @@
+#!/bin/sh
+echo Send test coverage to CodeClimate
+
+mkdir -p ./.tmp
+
+if ! [ -f ./.tmp/cc-test-reporter ]; then
+curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./.tmp/cc-test-reporter
+fi
+
+chmod +x ./.tmp/cc-test-reporter
+./.tmp/cc-test-reporter before-build
+
+yarn test
+
+./.tmp/cc-test-reporter after-build
